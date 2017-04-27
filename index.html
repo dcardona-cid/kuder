@@ -45,17 +45,17 @@
  $(document).ready(function () {
     $.getJSON( "includes/db.json", function( data ) {
       var items = [];
-      var counThree = 1; 
+      var counThree = 1;
      $.each( data, function( key, val ) {
        var elem = $(".contenido");
        var pos = key + 1;
-       var position = Math.ceil(pos/3);       
+       var position = Math.ceil(pos/3);
         $("<div class='row centrar pregunta'><div class='col-xs-8'><h4 class='enunciado'>"+val.enunciado+"</h4></div><div class='col-xs-4'><div class='row'><div class='col-xs-4'><div class='input-group centrar'><input class='eleccion' required type='radio' id='pos_"+position+"_"+counThree+"' name='pos_"+position+"' value='"+val.nro+"' data-baremos='"+JSON.stringify(val.positivos)+"'  /></div></div><div class='col-xs-4'><h5>"+val.numeral+"</h5></div><div class='col-xs-4 centrar'><div class='input-group centrar'><input class='eleccion' required type='radio' id='neg_"+position+"_"+counThree+"' name='neg_"+position+"'  value='"+val.nro+"' data-baremos='"+JSON.stringify(val.negativos)+"' /></div></div></div></div></div>").appendTo(elem);
        if (counThree == 3) {
         counThree = 1;
        }else{
         counThree++;
-       }    
+       }
 
       });
 
@@ -83,9 +83,9 @@
       var elem1 = "pos_"+i+"_"+int1;
       var elem2 = "neg_"+i+"_"+int2;
       $("#"+elem1).attr("checked", true);
-      resultados[elem1] = $("#"+elem1).data("baremos");
+      resultados["pos_"+i] = $("#"+elem1).data("baremos");
       $("#"+elem2).attr("checked", true);
-      resultados[elem2] = $("#"+elem2).data("baremos");
+      resultados["neg_"+i] = $("#"+elem2).data("baremos");
     }
  }
 
