@@ -1,5 +1,42 @@
+body{
+  font-family: helvetica;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
 .centrar{
   text-align: center;
+}
+
+.izq{
+  text-align: left;
+}
+
+.der{
+  text-align: right;
+}
+
+header{
+  width: 100%!important;
+  background: white;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  text-transform: center;
+  border-bottom: 3px solid #197db3;
+}
+
+header .titulo{
+  width: 100%;
+  max-width: 1024px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+#frm{
+  margin-top: 7em;
 }
 
 .row:nth-child(odd){
@@ -8,4 +45,40 @@
 
 .eleccion{
 	cursor: pointer!important;
+}
+
+section{
+  margin-bottom: 3em;
+}
+
+section:hover > article{
+opacity: 0.5;
+background: #a2a2a2;
+}
+
+article{
+/*border-bottom: 2px solid grey;*/
+  transition: all .6s;
+  border-bottom: 1px dashed gray;
+}
+
+section:hover > article:hover{
+  opacity: 1.0;
+  padding: 1em;
+  background-color: white;
+  border: none;
+  box-shadow: 0px 21px 84px -16px rgba(0,0,0,0.8);
+}
+
+article:hover > .pregunta:nth-child(odd){
+  background: #e8e8e8;
+}
+
+.enviar-group{
+  display: block;
+  margin: 0 auto;
+}
+
+#frm{
+  margin-bottom: 3em;;
 }
