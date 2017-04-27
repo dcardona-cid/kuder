@@ -1,0 +1,11 @@
+.centrar{
+  text-align: center;
+}
+
+.pregunta:nth-child(odd){
+  background: #e8e8e8;
+}
+
+.eleccion{
+	cursor: pointer!important;
+}
