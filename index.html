@@ -11,6 +11,22 @@
   <link rel="stylesheet" href="css/vendor/bootstrap-theme.css">
 </head>
 <body>
+  <div class="modal">
+    <div class="panel">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <h3>Resultado:</h3>
+            <ul class="resultados-list">
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="telon">
+    </div>
+  </div>
   <header class="container">
     <div class="row centrar titulo">
       <div class="col-xs-8">
@@ -58,12 +74,12 @@
        var pos = key + 1;
        var position = Math.ceil(pos/3);
        if(counThree == 1){
-         articulo = articulo +"<article>";
+         articulo = articulo +"<article><div class='row'><div class='col-xs-2 numeral'><h2>"+position+"</h2></div><div class='col-xs-10 pregunta-wrapper'>";
        }
         articulo =  articulo + "<div class='row centrar pregunta'><div class='col-xs-8'><h4 class='enunciado'>"+val.enunciado+"</h4></div><div class='col-xs-4'><div class='row'><div class='col-xs-4'><div class='input-group der'><input class='eleccion' required type='radio' id='pos_"+position+"_"+counThree+"' name='pos_"+position+"' value='"+val.nro+"' data-baremos='"+JSON.stringify(val.positivos)+"'  /></div></div><div class='col-xs-4'><h5 class='izq'>"+val.numeral+"</h5></div><div class='col-xs-4 centrar'><div class='input-group izq'><input class='eleccion' required type='radio' id='neg_"+position+"_"+counThree+"' name='neg_"+position+"'  value='"+val.nro+"' data-baremos='"+JSON.stringify(val.negativos)+"' /></div></div></div></div></div>";
 
        if (counThree == 3) {
-         articulo = articulo + "</article>"
+         articulo = articulo + "</div></article>"
          $(articulo).appendTo(elem);
          articulo = "";
         counThree = 1;
@@ -78,7 +94,29 @@
      // console.log("bla");
      resultados[$(this).attr("name")] = datos;
 });
+// Enviar el formulario
+    $(document).on("submit", "#frm", function (e) {
+      e.preventDefault();
+      var obj = exportar();
+      $(".modal").addClass("show");
+      $("<li><strong>Aire Libre:</strong> "+obj.aire+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Artístico:</strong> "+obj.artistico+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Calculo:</strong> "+obj.calculo+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Científico:</strong> "+obj.cientifico+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Literario:</strong> "+obj.literario+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Mecánico:</strong> "+obj.mecanico+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Músical:</strong> "+obj.musical+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Oficina:</strong> "+obj.oficina+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Persuasivo:</strong> "+obj.persuasivo+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Servicio:</strong> "+obj.servicio+"</li>").appendTo(".resultados-list");
+      $("<li><strong>Validación:</strong> "+obj.validacion+"</li>").appendTo(".resultados-list");
 
+});
+
+  $(document).on("click", ".telon", function(){
+    $(".modal").removeClass("show");
+    console.log("cierra modal");
+  });
 
 });
 
@@ -115,7 +153,8 @@ function exportar(){
     cat.servicio = cat.servicio + v.servicio;
     cat.validacion = cat.validacion + v.validacion;
   });
-  console.log(cat);
+  //console.log(cat);
+  return cat;
 }
 
   </script>
